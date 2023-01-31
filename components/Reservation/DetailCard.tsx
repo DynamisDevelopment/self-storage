@@ -27,7 +27,7 @@ const DetailCard = ({ data }: { data: any }) => {
         </Stack>
 
         <Stack>
-          <Text fontSize="md">Is Inside: {data.inside}</Text>
+          <Text fontSize="md">Is Inside: {JSON.stringify(data.inside)}</Text>
           <Text fontSize="md">
             Dimensions: {data.width} x {data.length} sqft
           </Text>
