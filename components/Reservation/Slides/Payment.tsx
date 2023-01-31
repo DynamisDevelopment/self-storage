@@ -23,7 +23,7 @@ const ValidationSchema = yup.object().shape({
     ),
   expiration_month: yup
     .string()
-    .max(6)
+    .max(2)
     .required("Required")
     .test(
       "expiration_month",
@@ -32,7 +32,7 @@ const ValidationSchema = yup.object().shape({
     ),
   expiration_year: yup
     .string()
-    .max(4)
+    .max(2)
     .required("Required")
     .test(
       "expiration_month",
@@ -122,10 +122,10 @@ const Payment = ({ next, prev, data }: SlideProps) => {
             name="Expiration Year"
             val="expiration_year"
             isNumber
-            maxLength={4}
+            maxLength={2}
             style={triInputStyle}
           />
-          
+
           <InputField
             formik={formik}
             name="CVV"
