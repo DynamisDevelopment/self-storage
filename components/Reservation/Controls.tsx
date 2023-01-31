@@ -5,11 +5,12 @@ import { Flex, Button } from "@chakra-ui/react"
 
 type ControllerProps = {
   isSubmit?: boolean
+  style?: Object
 } & ControlsProps
 
-const Controls = ({ next, prev, isSubmit }: ControllerProps) => {
+const Controls = ({ next, prev, isSubmit, style }: ControllerProps) => {
   return (
-    <Flex w="100%" justify="space-between">
+    <Flex w="100%" justify="space-between" {...style}>
       <Button onClick={prev} w="48%" colorScheme="teal" mt="auto" bottom="0">
         Back
       </Button>

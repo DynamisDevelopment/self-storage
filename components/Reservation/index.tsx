@@ -29,7 +29,7 @@ const Reservation = () => {
     1: <Details {...controls} />,
     2: <Payment {...controls} />,
     3: <Submit {...controls} />,
-    4: <Receipt {...controls} />,
+    4: <Receipt />,
   }
   return (
     <Box

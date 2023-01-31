@@ -5,17 +5,10 @@ import api from "@/lib/api"
 import valid from "card-validator"
 
 // * Components
-import {
-  Stack,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Input,
-  Flex,
-  useToast,
-} from "@chakra-ui/react"
+import { Stack, Flex, useToast } from "@chakra-ui/react"
 import Controls from "../Controls"
 import DetailCard from "../DetailCard"
+import InputField from "../InputField"
 
 const ValidationSchema = yup.object().shape({
   name_on_card: yup.string().required("Required"),
@@ -57,7 +50,7 @@ const ValidationSchema = yup.object().shape({
     ),
 })
 
-const halfInputStyle = {
+const triInputStyle = {
   as: Stack,
   w: "32%",
   spacing: 1,
@@ -104,99 +97,51 @@ const Payment = ({ next, prev, data }: SlideProps) => {
           formik.handleSubmit()
         }}
       >
-        <FormControl
-          as={Stack}
-          isInvalid={!!formik?.errors?.name_on_card}
-          spacing={1}
-        >
-          <FormLabel>Name on Card *</FormLabel>
-          <Input
-            id="name_on_card"
-            name="name_on_card"
-            type="text"
-            required
-            onChange={formik.handleChange}
-            value={formik.values.name_on_card}
-          />
-          {formik?.errors?.name_on_card && (
-            <FormErrorMessage>{formik?.errors?.name_on_card}</FormErrorMessage>
-          )}
-        </FormControl>
+        <InputField formik={formik} name="Name on Card" val="name_on_card" />
 
-        <FormControl as={Stack} isInvalid={!!formik?.errors?.card_number}>
-          <FormLabel>Card Number *</FormLabel>
-          <Input
-            id="card_number"
-            name="card_number"
-            type="string"
-            required
-            onChange={formik.handleChange}
-            maxLength={16}
-            value={formik.values.card_number}
-          />
-          {formik?.errors?.card_number && (
-            <FormErrorMessage>{formik?.errors?.card_number}</FormErrorMessage>
-          )}
-        </FormControl>
+        <InputField
+          formik={formik}
+          name="Card Number"
+          val="card_number"
+          isNumber
+          maxLength={16}
+        />
 
         <Flex justify="space-between">
-          <FormControl
-            {...halfInputStyle}
-            isInvalid={!!formik?.errors?.expiration_month}
-          >
-            <FormLabel>Expiration Month *</FormLabel>
-            <Input
-              id="expiration_month"
-              name="expiration_month"
-              type="string"
-              maxLength={2}
-              onChange={formik.handleChange}
-              value={formik.values.expiration_month}
-            />
-            {formik?.errors?.expiration_month && (
-              <FormErrorMessage>
-                {formik?.errors?.expiration_month}
-              </FormErrorMessage>
-            )}
-          </FormControl>
+          <InputField
+            formik={formik}
+            name="Expiration Month"
+            val="expiration_month"
+            isNumber
+            maxLength={2}
+            style={triInputStyle}
+          />
 
-          <FormControl
-            {...halfInputStyle}
-            isInvalid={!!formik?.errors?.expiration_year}
-          >
-            <FormLabel>Expiration Year *</FormLabel>
-            <Input
-              id="expiration_year"
-              name="expiration_year"
-              type="string"
-              maxLength={2}
-              onChange={formik.handleChange}
-              value={formik.values.expiration_year}
-            />
-            {formik?.errors?.expiration_year && (
-              <FormErrorMessage>
-                {formik?.errors?.expiration_year}
-              </FormErrorMessage>
-            )}
-          </FormControl>
-
-          <FormControl {...halfInputStyle} isInvalid={!!formik?.errors?.cvv}>
-            <FormLabel>CVV *</FormLabel>
-            <Input
-              id="cvv"
-              name="cvv"
-              type="string"
-              maxLength={3}
-              onChange={formik.handleChange}
-              value={formik.values.cvv}
-            />
-            {formik?.errors?.cvv && (
-              <FormErrorMessage>{formik?.errors?.cvv}</FormErrorMessage>
-            )}
-          </FormControl>
+          <InputField
+            formik={formik}
+            name="Expiration Year"
+            val="expiration_year"
+            isNumber
+            maxLength={4}
+            style={triInputStyle}
+          />
+          
+          <InputField
+            formik={formik}
+            name="CVV"
+            val="cvv"
+            isNumber
+            maxLength={3}
+            style={triInputStyle}
+          />
         </Flex>
 
-        <Controls next={() => {}} prev={prev} isSubmit />
+        <Controls
+          next={() => {}}
+          prev={prev}
+          isSubmit
+          style={{ paddingTop: "25px" }}
+        />
       </Stack>
     </Stack>
   )

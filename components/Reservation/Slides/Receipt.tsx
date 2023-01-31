@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react"
-import { SlideProps } from "../props"
 import api from "@/lib/api"
 import Confetti from "react-confetti"
 
 // * Components
-import { Stack, Text, Flex, useToast } from "@chakra-ui/react"
+import { Stack, Text, Flex } from "@chakra-ui/react"
 import DetailCard from "../DetailCard"
 
-const Receipt = ({ next, prev, setData }: SlideProps) => {
+const Receipt = () => {
   const [receipt, setReceipt] = useState<any>(null)
-  const toast = useToast()
 
   const fetchReceipt = async () => {
     const res = await api.get(`cart/submit-reservation`)
